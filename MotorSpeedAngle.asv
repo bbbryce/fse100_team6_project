@@ -1,0 +1,5 @@
+brick.MoveMotorAngleRel('AD', 20, 2160, 'Brake');
+brick.MoveMotorAngleRel('AD', 40, 2160, 'Brake');
+brick.MoveMotorAngleRel('AD', 60, 2160, 'Brake');
+brick.MoveMotorAngleRel('AD', 80, 2160, 'Brake');
+brick.MoveMotorAngleRel('AD', 100, 2160, 'Brake');
