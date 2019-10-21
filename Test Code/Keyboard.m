@@ -5,9 +5,9 @@ while 1
     pause(0.1)
     switch key
         case 'uparrow'
-            disp('Up Arrow Pressed');
+            moveForward();
         case 'downarrow'
-            disp('Down Arrow Pressed');       
+            moveBackward();        
         case 'leftarrow'
             disp('Left Arrow Pressed');
             
