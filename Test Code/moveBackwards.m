@@ -1,3 +1,3 @@
-function moveBackwards()
-    disp('Down Arrow Pressed.');
+function moveBackwards(moveMotorPort)
+    disp('Down Arrow Pressed.' + moveMotorPort);
 end

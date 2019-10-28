@@ -1,3 +1,3 @@
-function moveForward()
-    disp('Up Arrow Pressed.');
+function moveForward(moveMotorPort)
+    disp('Up Arrow Pressed.' + moveMotorPort);
 end
