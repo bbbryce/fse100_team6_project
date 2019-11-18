@@ -2,9 +2,9 @@
 
 global key
 InitKeyboard();
-liftEnabled = false;
-
 while 1
+
+liftEnabled = false;
 
     pause(0.1);
     switch key
@@ -19,7 +19,7 @@ while 1
         case 'leftarrow'
             brick.MoveMotorAngleAbs('B', 10, 38); 
             brick.WaitForMotor('B'); % Wait for motor to complete motion
-            brick.MoveMotorAngleRel('A', 40, -1050, 'Coast'); 
+            brick.MoveMotorAngleRel('A', 30, -1050, 'Coast'); 
             brick.WaitForMotor('A'); % Wait for motor to complete motion
             brick.MoveMotorAngleAbs('B', 10, 0); 
             brick.WaitForMotor('B'); % Wait for motor to complete motion
@@ -29,7 +29,7 @@ while 1
         case 'rightarrow'
             brick.MoveMotorAngleAbs('B', 10, 38); 
             brick.WaitForMotor('B'); % Wait for motor to complete motion
-            brick.MoveMotorAngleRel('A', 50, 1050, 'Coast'); 
+            brick.MoveMotorAngleRel('A', 50, 1100, 'Coast'); 
             brick.WaitForMotor('A'); % Wait for motor to complete motion
             brick.MoveMotorAngleAbs('B', 10, 0); 
             brick.WaitForMotor('B'); % Wait for motor to complete motion
@@ -37,12 +37,14 @@ while 1
             %disp(angle);
 	    case 'l'
 			liftEnabled = ~liftEnabled
-            if liftEnabled == true
 			
-                brick.MoveMotorAngleRel('C', 50, 950, 'Brake')
+			if liftEnabled == true
+			
+                brick.MoveMotorAngleRel('C', 50, 950, 'Brake');
+			
             else 
 			 
-                brick.MoveMotorAngleRel('C', 50, -950, 'Brake');   
+                brick.MoveMotorAngleRel('C', 50, -950, 'Brake');
             end
 			  
         case 0
