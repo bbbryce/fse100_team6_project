@@ -48,11 +48,10 @@ liftEnabled = false;
                 brick.moveMotorAngleRel('C', 50, -950, 'Brake');
 			  
         %case 0
-            %disp('No Key Pressed!');
+         %   disp('No Key Pressed!');
             
-        %case 'q'
-            %break;
+        case 'q'
+            break;
     end
-    end
-end
+ end
  CloseKeyboard();
