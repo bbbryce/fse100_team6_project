@@ -36,6 +36,7 @@ while 1
             
             %disp(angle);
 	    case 'l'
+<<<<<<< HEAD
 			liftEnabled = ~liftEnabled
             if liftEnabled == true
 			
@@ -43,6 +44,14 @@ while 1
             else 
 			 
                 brick.MoveMotorAngleRel('C', 50, -950, 'Brake');   
+=======
+			liftEnabled = ~liftEnabled;
+            
+            if liftEnabled == true
+                brick.moveMotorAngleRel('C', 50, 950, 'Brake');
+            else
+                brick.moveMotorAngleRel('C', 50, -950, 'Brake');
+>>>>>>> 8b575999781660da3cfeca2e70ad5c9a5d21c636
             end
 			  
         case 0
