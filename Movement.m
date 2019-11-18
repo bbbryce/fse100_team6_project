@@ -37,14 +37,11 @@ liftEnabled = false;
             %disp(angle);
 			
 	    case 'l'
-			liftEnabled = ~liftEnabled
-			
-			if liftEnabled == true
-			
+			liftEnabled = ~liftEnabled;
+            
+            if liftEnabled == true
                 brick.moveMotorAngleRel('C', 50, 950, 'Brake');
-			
-            else 
-			 
+            else
                 brick.moveMotorAngleRel('C', 50, -950, 'Brake');
             end
 			  
