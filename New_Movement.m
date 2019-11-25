@@ -51,9 +51,12 @@ pause(5);
            brick.WaitForMotor('A');
         elseif D <= 60
             disp("Front is not clear");
-           %moveForward();
-           brick.MoveMotorAngleRel('A', 50, 7590); 
-           brick.WaitForMotor('A');
+            brick.MoveMotorAngleAbs('B', 10, C);
+            brick.WaitForMotor('B');
+            brick.MoveMotorAngleRel('A', 200, -1090);
+            brick.WaitForMotor('A');
+            brick.MoveMotorAngleAbs('B', 10, 0)
+            brick.WaitForMotor('B');
         end
     end
 end
