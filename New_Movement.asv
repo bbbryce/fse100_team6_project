@@ -22,18 +22,18 @@ pause(5);
         disp("Turned Right and Moved Forward");
         brick.MoveMotorAngleAbs('B', 10, C); 
         brick.WaitForMotor('B'); 
-        brick.MoveMotorAngleRel('A', 50, 1090); 
+        brick.MoveMotorAngleRel('A', 50, 1050); 
         brick.WaitForMotor('A');
         brick.MoveMotorAngleAbs('B', 10, 0); 
         brick.WaitForMotor('B');
-        brick.MoveMotorAngleRel('A', 50, 7590); 
+        brick.MoveMotorAngleRel('A', 50, 1700); 
         brick.WaitForMotor('A');
     elseif D <= 60
         %turnLeft();
         disp("Turned Left and Checked if front is clear");
         brick.MoveMotorAngleAbs('B', 10, C); 
         brick.WaitForMotor('B');
-        brick.MoveMotorAngleRel('A', 40, -1090); 
+        brick.MoveMotorAngleRel('A', 40, -1050); 
         brick.WaitForMotor('A');
         brick.MoveMotorAngleAbs('B', 10, 0); 
         brick.WaitForMotor('B');
@@ -43,16 +43,16 @@ pause(5);
            %turnRightandMoveForward();
            brick.MoveMotorAngleAbs('B', 10, C); 
            brick.WaitForMotor('B'); 
-           brick.MoveMotorAngleRel('A', 50, 1090); 
+           brick.MoveMotorAngleRel('A', 50, 1050); 
            brick.WaitForMotor('A');
            brick.MoveMotorAngleAbs('B', 10, 0); 
            brick.WaitForMotor('B');
-           brick.MoveMotorAngleRel('A', 50, 7590); 
+           brick.MoveMotorAngleRel('A', 50, 1700); 
            brick.WaitForMotor('A');
         elseif D <= 60
             disp("Front is not clear");
            %moveForward();
-           brick.MoveMotorAngleRel('A', 50, 7590); 
+           brick.MoveMotorAngleRel('A', 50, 1700); 
            brick.WaitForMotor('A');
         end
     end

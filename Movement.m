@@ -1,5 +1,18 @@
 %brick = ConnectBrick('Error 404');
 
+brick.MoveMotor('B', -5);
+pause(3);
+brick.StopMotor('B');
+brick.ResetMotorAngle('B')
+brick.MoveMotor('B', 5);
+pause(3);
+brick.StopMotor('B');
+C = brick.GetMotorAngle('B');
+disp(C);
+
+brick.MoveMotorAngleAbs('B', 10, 0)
+
+
 global key
 InitKeyboard();
 liftEnabled = false;
@@ -17,41 +30,36 @@ while 1
             brick.WaitForMotor('A'); % Wait for motor to complete motion
         
         case 'leftarrow'
-            brick.MoveMotorAngleAbs('B', 10, 38); 
-            brick.WaitForMotor('B'); % Wait for motor to complete motion
+            brick.MoveMotorAngleAbs('B', 10, C); 
+            pause(1.5);
+            %brick.WaitForMotor('B'); % Wait for motor to complete motion
             brick.MoveMotorAngleRel('A', 40, -1050, 'Coast'); 
             brick.WaitForMotor('A'); % Wait for motor to complete motion
             brick.MoveMotorAngleAbs('B', 10, 0); 
-            brick.WaitForMotor('B'); % Wait for motor to complete motion
+            pause(1.5);
+            %brick.WaitForMotor('B'); % Wait for motor to complete motion
             
             %disp(angle);
             
         case 'rightarrow'
-            brick.MoveMotorAngleAbs('B', 10, 38); 
-            brick.WaitForMotor('B'); % Wait for motor to complete motion
+            brick.MoveMotorAngleAbs('B', 10, C);
+            
+            %brick.WaitForMotor('B'); % Wait for motor to complete motion
             brick.MoveMotorAngleRel('A', 50, 1050, 'Coast'); 
             brick.WaitForMotor('A'); % Wait for motor to complete motion
             brick.MoveMotorAngleAbs('B', 10, 0); 
-            brick.WaitForMotor('B'); % Wait for motor to complete motion
+            pause(1.5);
+            %brick.WaitForMotor('B'); % Wait for motor to complete motion
             
             %disp(angle);
 	    case 'l'
-<<<<<<< HEAD
 			liftEnabled = ~liftEnabled
             if liftEnabled == true
 			
                 brick.MoveMotorAngleRel('C', 50, 950, 'Brake')
             else 
 			 
-                brick.MoveMotorAngleRel('C', 50, -950, 'Brake');   
-=======
-			liftEnabled = ~liftEnabled;
-            
-            if liftEnabled == true
-                brick.moveMotorAngleRel('C', 50, 950, 'Brake');
-            else
-                brick.moveMotorAngleRel('C', 50, -950, 'Brake');
->>>>>>> 8b575999781660da3cfeca2e70ad5c9a5d21c636
+                brick.MoveMotorAngleRel('C', 50, -950, 'Brake');
             end
 			  
         case 0
