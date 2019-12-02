@@ -1,0 +1,122 @@
+disp("Calibrating Clutch");
+brick.MoveMotor('B', -5);
+pause(3);
+brick.StopAllMotors;
+brick.ResetMotorAngle('B')
+brick.MoveMotor('B', 5);
+pause(3);
+brick.StopAllMotors;
+P = brick.GetMotorAngle('B');
+disp(P);
+
+brick.MoveMotorAngleAbs('B', 5, 0)
+
+disp("Done Calibrating");
+pause(5);
+
+havePerson = false;
+trying = true;
+
+while trying
+    %disp("Am I here");
+    distance = brick.UltrasonicDist(2);
+    pause(0.1);
+    if distance > 60
+        disp("Turned Right and Moved Forward");
+        turnRight(brick,P);
+        [trying,havePerson] = moveForward(brick,havePerson,P);
+    elseif distance <= 60
+        disp("Turned Left and Checked if front is clear");
+        turnLeft(brick,P);
+        distance = brick.UltrasonicDist(2);
+        if distance > 60
+           disp("Front is Clear");
+           turnRight(brick,P);
+           [trying,havePerson] = moveForward(brick,havePerson,P);
+        elseif distance <= 60
+           disp("Front is not clear");
+           turnLeft(brick,P);
+        end
+    end
+end
+function [trying,havePerson]= moveForward(brick,havePerson,P)
+        trying = true;
+        brick.MoveMotorAngleAbs('B', 5, 0);
+        brick.WaitForMotor('B');
+        brick.MoveMotorAngleRel('A', 1000, 7590);
+        state = brick.MotorBusy('A');
+        while(state)
+            color = brick.ColorColor(1); 
+            if(color == 5)
+                disp("Red");
+                brick.StopAllMotors();
+                pause(5);
+                brick.MoveMotorAngleRel('A', 1000, 3795);
+                pause(2);
+            elseif(color == 3)
+                disp("Green");
+                if(havePerson == true)
+                    disp("Drop off Person");
+                    brick.StopAllMotors;
+                    pause(3);
+                    turnRight(brick,P);
+                    returnClutch(brick);
+                    turnRight(brick,P);
+                    returnClutch(brick);
+                    brick.MoveMotorAngleRel('A', 30, -3795);
+                    brick.MoveMotorAngleRel('C', 50, -950);
+                    trying = false;
+                else
+                    disp("Dont have Person");
+                end
+            elseif(color == 4)
+                disp("Yellow");
+                if(havePerson == false)
+                    disp("Picking up the person")
+                    brick.StopAllMotors;
+                    brick.MoveMotorAngleAbs('B',5,P,'break');
+                    brick.WaitForMotor('B');
+                    disp("Start Pause");
+                    pause(3);
+                    disp("Pause No More");
+                    turnRight(brick,P);
+                    returnClutch(brick);
+                    turnRight(brick,P);
+                    returnClutch(brick);
+                    brick.MoveMotorAngleAbs('B', 5, 0,'break');
+                    brick.WaitForMotor('B');
+                    brick.MoveMotorAngleRel('A', 30, -3795);
+                    brick.WaitForMotor('A');
+                    brick.MoveMotorAngleRel('C', 50, 950);
+                    brick.WaitForMotor('C');
+                    havePerson = true;
+                   % disp(brickSteps);
+                    
+                else
+                    disp("Why am I here?");
+                end
+            else
+                %disp("No Color");
+            end
+            state = brick.MotorBusy('A');
+        end
+        brick.WaitForMotor('A');
+end
+function turnRight(brick,P)
+    brick.MoveMotorAngleAbs('B', 5,P);
+    brick.WaitForMotor('B');
+    brick.MoveMotorAngleRel('A', 100, 1085); 
+    brick.WaitForMotor('A');
+end
+function turnLeft(brick,P)
+    brick.MoveMotorAngleAbs('B', 5, P); 
+    brick.WaitForMotor('B');
+    brick.MoveMotorAngleRel('A', 100, -1085);
+    brick.WaitForMotor('A');
+    
+end
+function returnClutch(brick)
+    brick.MoveMotorAngleAbs('B', 5, 0); 
+    brick.WaitForMotor('B');
+end
+

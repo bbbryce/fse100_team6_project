@@ -1,5 +1,5 @@
 %brick = ConnectBrick('Error 404')
-
+disp("Calibrating Clutch");
 brick.MoveMotor('B', -5);
 pause(3);
 brick.StopMotor('B');
@@ -12,6 +12,7 @@ disp(C);
 
 brick.MoveMotorAngleAbs('B', 10, 0)
 
+disp("Done Calibrating");
 pause(5);
 
  while true
